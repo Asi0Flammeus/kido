@@ -1,0 +1,27 @@
+services:
+  kido:
+    build:
+      context: .
+      args:
+        GIT_SHA: ${GIT_SHA:-dev}
+    image: kido:local
+    container_name: kido
+    ports:
+      - "127.0.0.1:4370:3000"
+    env_file: .env.prod
+    environment:
+      - PORT=3000
+      - DATABASE_PATH=/data/kido.sqlite
+    volumes:
+      - kido-data:/data
+    healthcheck:
+      test: ["CMD", "bun", "-e", "fetch('http://127.0.0.1:3000/healthz').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    stop_grace_period: 10s
+    restart: unless-stopped
+
+volumes:
+  kido-data:
