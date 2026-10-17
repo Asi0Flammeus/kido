@@ -1,0 +1,51 @@
+/* DESIGN 3.2: Shudan restyled to the shared kaya board. */
+.shudan-goban {
+  --shudan-board-border-width: 0;
+  --shudan-board-background-color: oklch(0.80 0.11 78);     /* --kaya */
+  --shudan-board-foreground-color: oklch(0.32 0.06 60);      /* --grid: lines, hoshi, coords */
+  --shudan-black-background-color: oklch(0.20 0.005 260);
+  --shudan-black-foreground-color: oklch(0.95 0 0);
+  --shudan-white-background-color: oklch(0.96 0.01 85);
+  --shudan-white-foreground-color: oklch(0.20 0.005 260);
+  font-family: var(--font-mono);
+}
+.shudan-goban-image { background-image: none; }           /* no wood texture */
+.shudan-stone-image.shudan-sign_1  { background: radial-gradient(circle at 35% 30%, oklch(0.34 0.005 260), oklch(0.14 0.005 260) 70%); }
+.shudan-stone-image.shudan-sign_-1 { background: radial-gradient(circle at 35% 30%, oklch(0.99 0.006 85), oklch(0.88 0.014 85) 75%); }
+
+/* Flat board, no stone shadow (DESIGN 2.3, 3). */
+.shudan-goban::after { background: none; }
+.shudan-vertex:not(.shudan-sign_0) .shudan-stone::before { background: none; box-shadow: none; }
+.shudan-stone-image { border-radius: 50%; }
+
+/* Stone placed: opacity 0 → 1 over --dur-fast (DESIGN 2.4). */
+.shudan-vertex:not(.shudan-sign_0) .shudan-stone { animation: kido-stone-in var(--dur-fast) linear; }
+@keyframes kido-stone-in { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .shudan-vertex:not(.shudan-sign_0) .shudan-stone { animation: none; }
+}
+
+/* Last move: --shu dot, diameter 0.28 vertex. */
+.shudan-vertex.shudan-marker_point .shudan-marker { fill: oklch(0.58 0.19 32); stroke: none; }
+.shudan-vertex.shudan-marker_point .shudan-marker circle { r: 0.14px; }
+
+/* Preview: ghost at 0.6 opacity + 2 px --shu ring at 0.9 × vertex. */
+.shudan-vertex .shudan-ghost { left: 0; top: 0; width: 100%; height: 100%; opacity: 0.6; transform: none; }
+.shudan-vertex .shudan-ghost::before { width: 92%; height: 92%; }
+.shudan-vertex.shudan-ghost_1 .shudan-ghost::before { background: radial-gradient(circle at 35% 30%, oklch(0.34 0.005 260), oklch(0.14 0.005 260) 70%); }
+.shudan-vertex.shudan-ghost_-1 .shudan-ghost::before { background: radial-gradient(circle at 35% 30%, oklch(0.99 0.006 85), oklch(0.88 0.014 85) 75%); }
+.shudan-vertex.shudan-marker_circle .shudan-marker { z-index: 3 !important; fill: none; stroke: oklch(0.58 0.19 32); stroke-width: 2px; left: 0; top: 0; width: 100%; height: 100%; }
+.shudan-vertex.shudan-marker_circle .shudan-marker circle { r: 0.45px; }
+
+/* Dead stones in scoring: dimmed + --shu cross. */
+.shudan-vertex.shudan-marker_cross .shudan-marker { stroke: oklch(0.58 0.19 32); stroke-width: 2px; }
+.shudan-vertex:not(.shudan-sign_0).shudan-dimmed .shudan-stone { opacity: 0.5; }
+
+/* Territory: centred square of 0.4 × vertex at 0.85 opacity, not a full-vertex wash. */
+.shudan-vertex .shudan-paint { overflow: visible; }
+.shudan-vertex .shudan-paint::before { left: 30%; top: 30%; right: 30%; bottom: 30%; opacity: 0.85; border-radius: 0; box-shadow: none; }
+.shudan-vertex.shudan-paint_1 .shudan-paint::before { background: oklch(0.20 0.005 260); }
+.shudan-vertex.shudan-paint_-1 .shudan-paint::before { background: oklch(0.96 0.01 85); }
+
+.shudan-coordx, .shudan-coordy { opacity: 0.7; }
+.shudan-coordx span, .shudan-coordy span { font-size: 11px; }

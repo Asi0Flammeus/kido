@@ -1,0 +1,43 @@
+/* DESIGN 2.1, verbatim. */
+:root {
+  color-scheme: dark;
+  --ground: oklch(0.15 0 0);
+  --table: oklch(0.20 0 0);
+  --table-2: oklch(0.25 0 0);
+  --table-3: oklch(0.30 0 0);
+  --line: oklch(1 0 0 / 0.08);
+  --line-strong: oklch(1 0 0 / 0.14);
+  --ink: oklch(0.95 0 0);
+  --ink-2: oklch(0.95 0 0 / 0.72);
+  --ink-3: oklch(0.95 0 0 / 0.52);
+  --ink-4: oklch(0.95 0 0 / 0.35);
+  --kaya: oklch(0.80 0.11 78);
+  --walnut: oklch(0.55 0.085 58);
+  --kaya-text: oklch(0.82 0.12 80);
+  --shu: oklch(0.58 0.19 32);
+  --shu-text: oklch(0.72 0.17 38);
+  --stone-black: oklch(0.20 0.005 260);
+  --stone-white: oklch(0.96 0.01 85);
+  --grid: oklch(0.32 0.06 60);
+
+  --font-ui: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --space: 4px;                 /* every spacing value is N × 4px */
+  --radius-control: 6px;        /* buttons, inputs, pills, move cells */
+  --radius-panel: 12px;         /* panels, player rows, board frame */
+  --radius-sheet: 16px;         /* bottom sheet top corners, result panel */
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-sheet: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-fast: 120ms;            /* fills, opacity on stones, button press */
+  --dur-base: 200ms;            /* piece slides, panel content crossfades */
+  --dur-sheet: 260ms;           /* bottom sheet in; out is 180ms */
+
+  --z-board-overlay: 10;        /* promotion picker, "viewing move" pill */
+  --z-sticky: 20;               /* header, action bar on the cover screen */
+  --z-banner: 30;               /* connection banner */
+  --z-sheet-backdrop: 40;
+  --z-sheet: 50;
+  --z-toast: 60;
+}

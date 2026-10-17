@@ -1,0 +1,18 @@
+/* DESIGN 3.1: replaces chessground.brown.css. */
+cg-board {
+  background-color: var(--kaya);
+  /* 8×8 checker: transparent light squares, dark squares painted --walnut (#97653d).
+     Top-left is light in both orientations (a8 and h1 are light squares). */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'><pattern id='k' width='2' height='2' patternUnits='userSpaceOnUse'><rect x='1' y='0' width='1' height='1' fill='%2397653d'/><rect x='0' y='1' width='1' height='1' fill='%2397653d'/></pattern><rect width='8' height='8' fill='url(%23k)'/></svg>");
+}
+cg-board square.last-move { background: radial-gradient(circle at center, oklch(0.58 0.19 32 / 0.9) 11%, transparent 12%); }
+cg-board square.selected  { background-color: oklch(0.58 0.19 32 / 0.45); }
+cg-board square.move-dest { background: radial-gradient(oklch(0 0 0 / 0.28) 22%, transparent 23%); }
+cg-board square.oc.move-dest { background: radial-gradient(transparent 0%, transparent 80%, oklch(0 0 0 / 0.28) 80%); }
+cg-board square.move-dest:hover, cg-board square.move-dest.hover { background: oklch(0 0 0 / 0.14); }
+cg-board square.check { background: radial-gradient(ellipse at center, oklch(0.58 0.19 32) 0%, oklch(0.58 0.19 32 / 0.9) 25%, oklch(0.58 0.19 32 / 0) 89%); }
+coords { font: 500 11px/1 var(--font-mono); }
+.orientation-white .ranks :nth-child(odd), .orientation-white .files :nth-child(even),
+.orientation-black .ranks :nth-child(even), .orientation-black .files :nth-child(odd) { color: oklch(0.32 0.06 60 / 0.8); }
+.orientation-white .ranks :nth-child(even), .orientation-white .files :nth-child(odd),
+.orientation-black .ranks :nth-child(odd), .orientation-black .files :nth-child(even) { color: oklch(0.96 0.01 85 / 0.8); }
