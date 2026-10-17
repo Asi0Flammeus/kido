@@ -41,7 +41,7 @@ bun run check      # tsc --noEmit
 
 ## Deploy
 
-One Bun process in a Docker Compose service on `127.0.0.1:4370`, SQLite (WAL) in the `kido-data` volume, a hand-managed nginx vhost (`deploy/kido.wmmw.sh.conf`) with a certbot webroot certificate.
+One Bun process in a Docker Compose service on `127.0.0.1:4371`, SQLite (WAL) in the `kido-data` volume, a hand-managed nginx vhost (`deploy/kido.wmmw.sh.conf`) with a certbot webroot certificate.
 
 ```sh
 ./deploy.sh up       # first deploy: creates .env.prod (mode 600) with a fresh admin token, builds, starts

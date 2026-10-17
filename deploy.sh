@@ -1,5 +1,5 @@
 #!/bin/bash
-# Kido deploy (Docker Compose): nginx vhost kido.wmmw.sh -> 127.0.0.1:4370 (ARCHITECTURE 9).
+# Kido deploy (Docker Compose): nginx vhost kido.wmmw.sh -> 127.0.0.1:4371 (ARCHITECTURE 9; 4370 is taken on this host).
 #
 #   ./deploy.sh up       first deploy: create .env.prod if missing, build, start, health check
 #   ./deploy.sh update   git pull --ff-only, rebuild, restart, health check (not during a timed game)
@@ -9,7 +9,7 @@
 set -euo pipefail
 
 DOMAIN="kido.wmmw.sh"
-PORT=4370
+PORT=4371
 APP_DIR="$(cd "$(dirname "$0")" && pwd)"
 ENV_FILE=".env.prod"
 cd "$APP_DIR"

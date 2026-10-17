@@ -14,7 +14,7 @@
 // Prints the ASCII board and the JSON fields that matter; never prints tokens.
 import type { GameView, WaitResponse } from '../src/shared/types';
 
-const base = (process.env.KIDO_URL ?? 'http://127.0.0.1:4370').replace(/\/$/, '');
+const base = (process.env.KIDO_URL ?? 'http://127.0.0.1:4371').replace(/\/$/, '');
 const [command, id, ...rest] = process.argv.slice(2);
 
 async function call<T>(method: string, path: string, token: string | undefined, body?: unknown): Promise<T> {
