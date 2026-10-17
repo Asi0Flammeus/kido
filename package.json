@@ -1,0 +1,32 @@
+{
+  "name": "kido",
+  "version": "0.1.0",
+  "private": true,
+  "license": "GPL-3.0-or-later",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run build:web && bun --watch src/server/main.ts",
+    "build:web": "bun scripts/build-web.ts",
+    "start": "bun src/server/main.ts",
+    "test": "bun test --timeout 200000 test/rules-*.test.ts test/clock.test.ts test/api-*.test.ts",
+    "test:e2e": "bun test test/e2e",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-mono": "5.3.0",
+    "@fontsource/ibm-plex-sans": "5.3.0",
+    "@lichess-org/chessground": "10.4.2",
+    "@resvg/resvg-js": "2.6.2",
+    "@sabaki/deadstones": "2.2.0",
+    "@sabaki/go-board": "1.4.3",
+    "@sabaki/sgf": "3.5.0",
+    "@sabaki/shudan": "1.8.0",
+    "chess.js": "1.4.0",
+    "preact": "10.29.8"
+  },
+  "devDependencies": {
+    "@types/bun": "1.4.3",
+    "playwright": "1.60.0",
+    "typescript": "7.0.2"
+  }
+}

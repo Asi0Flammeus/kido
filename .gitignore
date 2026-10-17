@@ -1,0 +1,5 @@
+node_modules/
+dist/
+data/
+.env.prod
+test/e2e/artifacts/
