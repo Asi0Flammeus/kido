@@ -67,14 +67,21 @@ export class GameClient {
     let reopenTimer: ReturnType<typeof setTimeout> | undefined;
     let stopped = false;
     let healthy = false;
+    let pastOfflineThreshold = false;
 
     const degrade = () => {
-      if (!navigator.onLine) {
+      if (!navigator.onLine) pastOfflineThreshold = true;
+      if (pastOfflineThreshold) {
         onConnection('offline');
         return;
       }
       onConnection('reconnecting');
-      if (offlineTimer === undefined) offlineTimer = setTimeout(() => onConnection('offline'), OFFLINE_AFTER_MS);
+      if (offlineTimer === undefined) {
+        offlineTimer = setTimeout(() => {
+          pastOfflineThreshold = true;
+          onConnection('offline');
+        }, OFFLINE_AFTER_MS);
+      }
     };
 
     const open = () => {
@@ -85,6 +92,7 @@ export class GameClient {
       source.addEventListener('state', (event) => {
         clearTimeout(offlineTimer);
         offlineTimer = undefined;
+        pastOfflineThreshold = false;
         healthy = true;
         onConnection('live');
         onState(JSON.parse((event as MessageEvent<string>).data) as GameView);
@@ -100,8 +108,12 @@ export class GameClient {
       };
     };
 
-    const onOffline = () => onConnection('offline');
+    const onOffline = () => {
+      pastOfflineThreshold = true;
+      onConnection('offline');
+    };
     const onOnline = () => {
+      pastOfflineThreshold = false;
       if (!healthy) {
         degrade();
         open();

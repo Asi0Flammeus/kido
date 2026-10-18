@@ -34,7 +34,7 @@ export function Sheet({ title, sentence, confirm, onConfirm, onCancel }: Props) 
         onCancel();
       }}
       onClick={(event) => {
-        const r = ref.current!.getBoundingClientRect();
+        const r = event.currentTarget.getBoundingClientRect();
         const outside = event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom;
         if (outside) onCancel();
       }}

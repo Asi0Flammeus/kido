@@ -39,6 +39,8 @@ bun run test:e2e   # Playwright game on the phone viewport (A4), needs Chromium 
 bun run check      # tsc --noEmit
 ```
 
+The browser suite also checks connection degradation and recovery, one page heading per route, and that confirming a sheet raises no page errors.
+
 ## Deploy
 
 One Bun process in a Docker Compose service on `127.0.0.1:4371`, SQLite (WAL) in the `kido-data` volume, a hand-managed nginx vhost (`deploy/kido.wmmw.sh.conf`) with a certbot webroot certificate.

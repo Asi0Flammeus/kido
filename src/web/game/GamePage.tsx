@@ -582,6 +582,7 @@ export function GamePage({ id, token }: { id: string; token: string | null }) {
       <Header meta={metaLine(view)} />
       <Banner connection={connection} />
       <main class="game fade-in" ref={mainRef} tabIndex={-1} aria-busy="false">
+        <h1 class="visually-hidden">{view.kind === 'chess' ? 'Chess game' : `Go ${view.boardSize}×${view.boardSize} game`}</h1>
         <div class="board-col">
           <div class="board-frame" style={{ width: `${layout.box}px` }}>
             {board}
@@ -697,6 +698,7 @@ function Skeleton({ mainRef, layout }: { mainRef: { current: HTMLElement | null 
     <>
       <Header meta={null} />
       <main class="game" ref={mainRef} tabIndex={-1} aria-busy="true">
+        <h1 class="visually-hidden">Game</h1>
         <div class="board-col">
           <div class="board-frame" style={{ width: `${layout.box}px` }}>
             <div class="board" style={{ width: `${layout.board}px`, height: `${layout.board}px` }}>
