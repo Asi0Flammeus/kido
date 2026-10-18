@@ -34,7 +34,7 @@ test(
       ['/', '.landing'],
       ['/g/nope', '.empty-state'],
       [game.links.william.replace('https://kido.wmmw.sh', ''), 'main[aria-busy="false"]'],
-    ]) {
+    ] as const) {
       await page.goto(`${srv.url}${path}`);
       await page.locator(ready).waitFor();
       await expect(page.locator('h1').count()).resolves.toBe(1);
